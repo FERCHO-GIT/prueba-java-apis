@@ -1,15 +1,35 @@
 services:
-  
-  mysql:
+  driver-service:
+      build: microservices/driver-service
+      ports:
+        - "5001:8080"
+      environment:
+        - SPRING_PROFILES_ACTIVE=docker
+      depends_on:
+          mysql-service:
+            condition: service_healthy
+      deploy:
+        resources:
+          limits:
+            cpus: '0.75' 
+          reservations:
+            cpus: '0.25'
+
+  mysql-service:
     image: mysql:8.4.0
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: drivers
+      MYSQL_DATABASE: driver_db
       MYSQL_USER: admin
       MYSQL_PASSWORD: 123456
     ports: 
      - "3306:3306"
+    healthcheck:
+      test: mysql --user=admin --password=123456 --execute="SHOW DATABASES;"
+      interval: 5s
+      timeout: 2s
+      retries: 5
     volumes:
       - mysql_data:/var/lib/mysql
 
