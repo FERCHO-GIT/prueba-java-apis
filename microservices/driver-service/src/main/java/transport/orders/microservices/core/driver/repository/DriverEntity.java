@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.hibernate.type.YesNoConverter;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,11 +19,14 @@ public class DriverEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID driverId;
 
+    @Column(nullable=false)
     private String name;
 
+    @Column(nullable=false)
     private String licenseNumber;
 
     @Convert(converter = YesNoConverter.class)
+    @Column(nullable=false)
     private Boolean active;
 
     public DriverEntity() { }

@@ -13,6 +13,7 @@ import transport.orders.microservices.core.driver.repository.DriverRepository;
 @Service
 public class DriverManagerServiceImpl implements DriverManagerService {
 
+    private final static boolean ACTIVE = true;
     private final DriverRepository driverRepository;
 
     public DriverManagerServiceImpl(DriverRepository driverRepository) {
@@ -29,7 +30,7 @@ public class DriverManagerServiceImpl implements DriverManagerService {
     @Override
     public Collection<DriverListActiveDTO> getDriverListActive() {
         Collection<DriverListActiveDTO> driverListActive = new ArrayList<>();
-        this.driverRepository.findAll().forEach(row -> {
+        this.driverRepository.findByActive(ACTIVE).forEach(row -> {
             driverListActive.add(new DriverListActiveDTO(
                 row.getDriverId().toString(), row.getName(), row.getLicenseNumber(), row.getActive()));
         });
