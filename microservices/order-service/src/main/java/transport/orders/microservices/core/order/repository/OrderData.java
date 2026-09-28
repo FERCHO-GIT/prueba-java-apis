@@ -21,14 +21,14 @@ public class OrderData implements CommandLineRunner {
         ZoneId zoneId = ZoneId.of("America/Mexico_City");
         this.orderRepository.save(
             new OrderEntity(
-                Status.CREATED, "La Villa", 
-                "La Raza", localDateTime.atZone(zoneId), 
+                Status.CREATED, "La Villa".toLowerCase(), 
+                "La Raza".toLowerCase(), localDateTime.atZone(zoneId), 
                 localDateTime.atZone(zoneId)
             ));
         this.orderRepository.save(
             new OrderEntity(
-                Status.CREATED, "San Bartolo", 
-                "Los Reyes", localDateTime.atZone(zoneId), 
+                Status.CREATED, "San Bartolo".toLowerCase(), 
+                "Los Reyes".toLowerCase(), localDateTime.atZone(zoneId), 
                 localDateTime.atZone(zoneId)
             ));
     }
