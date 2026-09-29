@@ -28,7 +28,6 @@ public class DriverComposeIntegration {
             .uri(driverAPI + "/create/driver")
             .contentType(MediaType.APPLICATION_JSON)
             .body(DriverDTO.class)
-            .accept(MediaType.APPLICATION_JSON)
             .retrieve()
             .toBodilessEntity();
     }
