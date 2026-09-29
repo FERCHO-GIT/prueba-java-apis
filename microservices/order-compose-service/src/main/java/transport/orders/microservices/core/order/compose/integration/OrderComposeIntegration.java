@@ -21,8 +21,8 @@ public class OrderComposeIntegration {
     private final RestClient restClient;
 
     public OrderComposeIntegration() {
-        this.orderServiceURL = "http://localhost:8001";
-        //this.orderServiceURL = "http://order-service:8001";
+        //this.orderServiceURL = "http://localhost:8001";
+        this.orderServiceURL = "http://order-service:8080";
         this.restClient = RestClient.create();
     }
 

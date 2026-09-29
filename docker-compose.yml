@@ -1,4 +1,16 @@
 services:
+  order-compose-service:
+      build: microservices/order-compose-service
+      ports:
+        - "8000:8080"
+      environment:
+        - SPRING_PROFILES_ACTIVE=docker
+      deploy:
+        resources:
+          limits:
+            cpus: '0.75' 
+          reservations:
+            cpus: '0.25'
 
   driver-service:
       build: microservices/driver-service
