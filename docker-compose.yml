@@ -1,4 +1,5 @@
 services:
+
   driver-service:
       build: microservices/driver-service
       ports:
@@ -8,6 +9,16 @@ services:
       depends_on:
           mysql-service:
             condition: service_healthy
+
+  order-service:
+      build: microservices/order-service
+      ports:
+        - "8001:8080"
+      environment:
+        - SPRING_PROFILES_ACTIVE=docker
+      depends_on:
+        postgresql:
+          condition: service_healthy
       deploy:
         resources:
           limits:

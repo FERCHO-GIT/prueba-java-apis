@@ -1,1 +1,2 @@
 include ':microservices:driver-service'
+include ':microservices:order-service'
