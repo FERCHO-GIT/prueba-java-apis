@@ -1,0 +1,12 @@
+spring.application.name: driver-compose-service
+
+server.port: 5000
+
+---
+spring:
+  config:
+    activate:
+      on-profile:
+      - docker
+
+server.port: 8080
