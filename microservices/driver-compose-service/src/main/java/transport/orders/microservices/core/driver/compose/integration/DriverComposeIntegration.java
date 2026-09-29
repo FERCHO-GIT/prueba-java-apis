@@ -18,7 +18,8 @@ public class DriverComposeIntegration {
     private final RestClient restClient;
 
     public DriverComposeIntegration() {
-        this.driverServiceURL = "http://localhost:5001";
+        //this.driverServiceURL = "http://localhost:5001";
+        this.driverServiceURL = "http://driver-service:8080";
         this.restClient = RestClient.create();
     }
 
@@ -27,7 +28,8 @@ public class DriverComposeIntegration {
         return this.restClient.post()
             .uri(driverAPI + "/create/driver")
             .contentType(MediaType.APPLICATION_JSON)
-            .body(DriverDTO.class)
+            .accept(MediaType.APPLICATION_JSON)
+            .body(driverDTO)
             .retrieve()
             .toBodilessEntity();
     }

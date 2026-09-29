@@ -1,5 +1,12 @@
 services:
 
+  driver-compose-service:
+      build: microservices/driver-compose-service
+      ports:
+        - "5000:8080"
+      environment:
+        - SPRING_PROFILES_ACTIVE=docker
+
   driver-service:
       build: microservices/driver-service
       ports:

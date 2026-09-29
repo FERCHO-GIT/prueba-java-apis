@@ -14,8 +14,6 @@ public class DriverDTO {
     @Size(max = 10, message = "Must contain at least 10 characters")
     private String licenseNumber;
 
-    @NotNull(message = "Must contain a valid active option")
-    @NotBlank(message = "Cannot be blank")
     private Boolean active;
 
     public DriverDTO(String name, String licenseNumber, Boolean active) {
