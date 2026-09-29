@@ -41,16 +41,16 @@ public class OrderComposeManagerServiceImpl implements OrderComposeManagerServic
 
     @Override
     public Collection<OrderResponseDTO> getOrderListByDate(String date) {
-        return this.orderComposeIntegration.getOrderListByStatus(date);
+        return this.orderComposeIntegration.getOrderListByDate(date);
     }
 
     @Override
     public Collection<OrderResponseDTO> getOrderListByOrigin(String origin) {
-        return this.orderComposeIntegration.getOrderListByStatus(origin);
+        return this.orderComposeIntegration.getOrderListByOrigin(origin);
     }
 
     @Override
     public Collection<OrderResponseDTO> getOrderListByDestination(String destination) {
-        return this.orderComposeIntegration.getOrderListByStatus(destination);
+        return this.orderComposeIntegration.getOrderListByDestination(destination);
     }
 }

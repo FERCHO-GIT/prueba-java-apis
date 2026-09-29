@@ -1,0 +1,3 @@
+spring.application.name: order-compose-service
+
+server.port: 8000
