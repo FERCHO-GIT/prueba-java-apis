@@ -13,3 +13,17 @@ spring:
     properties:
         hibernate:
             dialect: org.hibernate.dialect.PostgreSQLDialect
+
+---
+spring:
+  config:
+    activate:
+      on-profile:
+      - docker
+  datasource:
+      url: jdbc:postgresql://postgresql:5432/pgdb
+  jpa:
+    hibernate:
+        ddl-auto: create-drop
+
+server.port: 8080
