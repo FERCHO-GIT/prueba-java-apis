@@ -4,6 +4,8 @@ import java.util.Collection;
 
 import org.springframework.stereotype.Service;
 
+import transport.orders.microservices.core.order.compose.dto.DriverDTO;
+import transport.orders.microservices.core.order.compose.dto.OrderAssignRequestDTO;
 import transport.orders.microservices.core.order.compose.dto.OrderRequestDTO;
 import transport.orders.microservices.core.order.compose.dto.OrderResponseDTO;
 import transport.orders.microservices.core.order.compose.dto.OrderStatusRequestDTO;
@@ -13,6 +15,7 @@ import transport.orders.microservices.core.order.compose.integration.OrderCompos
 @Service
 public class OrderComposeManagerServiceImpl implements OrderComposeManagerService {
 
+    private final static String ACTIVE = "CREATED";
     private final OrderComposeIntegration orderComposeIntegration;
 
     public OrderComposeManagerServiceImpl(OrderComposeIntegration orderComposeIntegration) {
@@ -52,5 +55,15 @@ public class OrderComposeManagerServiceImpl implements OrderComposeManagerServic
     @Override
     public Collection<OrderResponseDTO> getOrderListByDestination(String destination) {
         return this.orderComposeIntegration.getOrderListByDestination(destination);
+    }
+
+    @Override
+    public void createOrderAssign(OrderAssignRequestDTO orderAssignRequestDTO) {
+        OrderResponseDTO orderResponseDTO = this.orderComposeIntegration.getOrderById(orderAssignRequestDTO.getOrderId());
+        DriverDTO driverDTO = this.orderComposeIntegration.getDriverById(orderAssignRequestDTO.getDriverId());
+
+        if (driverDTO.getActive() && orderResponseDTO.getStatus().equals(ACTIVE)) {
+            this.orderComposeIntegration.createOrderAssign(orderAssignRequestDTO);
+        }
     }
 }

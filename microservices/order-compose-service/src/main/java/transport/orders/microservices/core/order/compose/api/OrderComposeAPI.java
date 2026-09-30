@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
+import transport.orders.microservices.core.order.compose.dto.OrderAssignRequestDTO;
 import transport.orders.microservices.core.order.compose.dto.OrderRequestDTO;
 import transport.orders.microservices.core.order.compose.dto.OrderResponseDTO;
 import transport.orders.microservices.core.order.compose.dto.OrderStatusRequestDTO;
@@ -19,7 +20,7 @@ import transport.orders.microservices.core.order.compose.dto.OrderStatusResponse
 import transport.orders.microservices.core.order.compose.service.OrderComposeManagerService;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/compose")
 public class OrderComposeAPI {
 
     private final OrderComposeManagerService orderComposeManagerService;
@@ -28,39 +29,44 @@ public class OrderComposeAPI {
         this.orderComposeManagerService = orderComposeManagerService;
     }
 
-    @PostMapping("compose/create/order")
+    @PostMapping("create/order")
     public void createOrder(@Valid @RequestBody OrderRequestDTO orderRequestDTO) {
         this.orderComposeManagerService.createOrder(orderRequestDTO);
     }
 
-    @PutMapping("compose/update/order/status")
+    @PutMapping("update/order/status")
     public OrderStatusResponseDTO updateOrderStatus(@Valid @RequestBody OrderStatusRequestDTO orderStatusRequestDTO) {
         return this.orderComposeManagerService.updateOrderStatus(orderStatusRequestDTO);
     }
 
-    @GetMapping("compose/order/{orderId}")
+    @GetMapping("order/{orderId}")
     public OrderResponseDTO getOrderById(@PathVariable String orderId) {
         return this.orderComposeManagerService.getOrderById(orderId);
     }
 
-    @GetMapping("compose/order/status")
+    @GetMapping("order/status")
     public Collection<OrderResponseDTO> getOrderListByStatus(@PathParam(value="value") String value) {
         return this.orderComposeManagerService.getOrderListByStatus(value);
     }
 
-    @GetMapping("compose/order/date")
+    @GetMapping("order/date")
     public Collection<OrderResponseDTO> getOrderListByDate(@PathParam(value="value") String value) {
         return this.orderComposeManagerService.getOrderListByDate(value);
     }
 
-    @GetMapping("compose/order/origin")
+    @GetMapping("order/origin")
     public Collection<OrderResponseDTO> getOrderListByOrigin(@PathParam(value="value") String value) {
         return this.orderComposeManagerService.getOrderListByOrigin(value);
     }
 
-    @GetMapping("compose/order/destination")
+    @GetMapping("order/destination")
     public Collection<OrderResponseDTO> getOrderListByDestination(@PathParam(value="value") String value) {
         return this.orderComposeManagerService.getOrderListByDestination(value);
+    }
+
+    @PostMapping("create/order/assign")
+    public void createOrderAssign(@RequestBody OrderAssignRequestDTO orderAssignRequestDTO) {
+        this.orderComposeManagerService.createOrderAssign(orderAssignRequestDTO);
     }
 
 }
