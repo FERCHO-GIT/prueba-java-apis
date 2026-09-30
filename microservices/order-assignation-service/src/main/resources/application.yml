@@ -1,0 +1,15 @@
+spring.application.name: order-assignation-service
+
+server.port: 8002
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pgdb
+    username: admin
+    password: 123456
+  jpa:
+    hibernate:
+        ddl-auto: create-drop
+    properties:
+        hibernate:
+            dialect: org.hibernate.dialect.PostgreSQLDialect
