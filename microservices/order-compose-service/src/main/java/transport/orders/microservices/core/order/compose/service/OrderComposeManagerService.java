@@ -2,6 +2,7 @@ package transport.orders.microservices.core.order.compose.service;
 
 import java.util.Collection;
 
+import transport.orders.microservices.core.order.compose.dto.OrderAssignRequestDTO;
 import transport.orders.microservices.core.order.compose.dto.OrderRequestDTO;
 import transport.orders.microservices.core.order.compose.dto.OrderResponseDTO;
 import transport.orders.microservices.core.order.compose.dto.OrderStatusRequestDTO;
@@ -15,4 +16,5 @@ public interface OrderComposeManagerService {
     Collection<OrderResponseDTO> getOrderListByDate(String date);
     Collection<OrderResponseDTO> getOrderListByOrigin(String origin);
     Collection<OrderResponseDTO> getOrderListByDestination(String destination);
+    void createOrderAssign(OrderAssignRequestDTO orderAssignRequestDTO);
 }
