@@ -2,6 +2,7 @@ package transport.orders.microservices.core.order.assign.service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -23,8 +24,8 @@ public class OrderAssignServiceImpl implements OrderAssignService {
         LocalDateTime localDateTime = LocalDateTime.now();
         ZoneId zoneId = ZoneId.of("America/Mexico_City");
         this.orderAssignRepository.save(new OrderAssignEntity(
-            orderAssignRequestDTO.getOrderId(), 
-            orderAssignRequestDTO.getDriverId(),
+            UUID.fromString(orderAssignRequestDTO.getOrderId()), 
+            UUID.fromString(orderAssignRequestDTO.getDriverId()),
             localDateTime.atZone(zoneId)
         ));
     }

@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="order-assign")
+@Table(name="order_assign")
 public class OrderAssignEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
