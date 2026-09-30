@@ -8,4 +8,5 @@ import transport.orders.microservices.core.driver.dto.DriverListActiveDTO;
 public interface DriverManagerService {
     void createDriver(DriverDTO driverDTO);
     Collection<DriverListActiveDTO> getDriverListActive();
+    DriverDTO getDriverById(String id);
 }

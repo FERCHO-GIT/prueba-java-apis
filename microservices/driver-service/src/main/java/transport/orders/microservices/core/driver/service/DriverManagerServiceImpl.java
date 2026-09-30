@@ -2,6 +2,7 @@ package transport.orders.microservices.core.driver.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,14 @@ public class DriverManagerServiceImpl implements DriverManagerService {
         });
 
         return driverListActive;
+    }
+
+    @Override
+    public DriverDTO getDriverById(String id) {
+        DriverEntity driverEntity = this.driverRepository.getReferenceById(UUID.fromString(id));
+        return new DriverDTO(
+            driverEntity.getName(), driverEntity.getLicenseNumber(), driverEntity.getActive()
+        );
     }
 
 }
