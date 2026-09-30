@@ -1,5 +1,6 @@
 include ':microservices:driver-service'
 include ':microservices:order-service'
+include ':microservices:order-assignation-service'
 include ':microservices:driver-compose-service'
 include ':microservices:order-compose-service'
 include ':microservices:sign-compose-service'
