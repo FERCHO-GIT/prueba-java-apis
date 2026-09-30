@@ -1,0 +1,9 @@
+spring.application.name: sign-compose-service
+
+server.port: 9000
+
+# User Properties
+sign.username: admin
+sign.password: 123456
+
+jwt.expiration.time: 700000
