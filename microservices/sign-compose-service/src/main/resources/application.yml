@@ -7,3 +7,12 @@ sign.username: admin
 sign.password: 123456
 
 jwt.expiration.time: 700000
+
+---
+spring:
+  config:
+    activate:
+      on-profile:
+      - docker
+
+server.port: 8080
